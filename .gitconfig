@@ -1,0 +1,7 @@
+[user]
+	email = rahmatardiansyah147@gmail.com
+	name = Rahmat Ardiansyah
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
