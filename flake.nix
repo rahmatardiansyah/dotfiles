@@ -25,7 +25,7 @@
       };
       artHm = {
         mat = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          inherit pkgs;
           modules = [
             {
               home = {
