@@ -68,6 +68,7 @@
     pcsx2
     ppsspp
     prismlauncher
+    brightnessctl
   ];
 
   programs.git = {
