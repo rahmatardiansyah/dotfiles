@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   home.username = "mat";
   home.homeDirectory = "/home/mat";
   home.stateVersion = "22.11";
+  programs.home-manager.enable = true;
   home.packages = with pkgs; [
     git
     lazygit
@@ -28,18 +29,18 @@
     exiv2
     mediainfo
     imagemagick
+    yt-dlp
 
     # Terminal
     kitty
     alacritty
 
-    neovim
-    xclip
-    tree-sitter
-    ripgrep
-    fd
-    nixfmt
-    yt-dlp
+    pkgs-unstable.neovim
+    pkgs-unstable.xclip
+    pkgs-unstable.tree-sitter
+    pkgs-unstable.ripgrep
+    pkgs-unstable.fd
+    pkgs-unstable.nixfmt
 
     # Development
     nodejs-18_x
@@ -68,7 +69,11 @@
     pcsx2
     ppsspp
     prismlauncher
+    meld
+    klavaro
+    flameshot
     brightnessctl
+    feh
   ];
 
   programs.git = {
@@ -93,36 +98,4 @@
       theme_background = false;
     };
   };
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/mat/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
