@@ -45,6 +45,8 @@
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.gutenprint ];
 
+  virtualisation.docker.enable = false;
+
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -58,9 +60,9 @@
   users.users.mat = {
     isNormalUser = true;
     description = "Rahmat Ardiansyah";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [ firefox brave unzip ];
+    packages = with pkgs; [ firefox brave ];
   };
 
   virtualisation.virtualbox.host.enable = true;
@@ -79,6 +81,7 @@
   environment.systemPackages = with pkgs; [
     git
     wget
+    unzip
     vim
     ntfs3g
     (pkgs.callPackage ./cursor.nix { })
