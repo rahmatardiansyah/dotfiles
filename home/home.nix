@@ -74,6 +74,14 @@
     flameshot
     brightnessctl
     feh
+    dunst
+    libnotify
+    xcompmgr
+    clipmenu
+    pamixer
+    qt5ct
+    arandr
+    networkmanagerapplet
   ];
 
   programs.git = {

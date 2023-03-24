@@ -26,6 +26,7 @@
         art = lib.nixosSystem {
           inherit system;
           modules = [ ./system/configuration.nix ];
+          specialArgs = { inherit pkgs-unstable; };
         };
       };
       artHm = {

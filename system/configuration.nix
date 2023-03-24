@@ -1,7 +1,7 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, pkgs-unstable, ... }: {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ./pipewire-conf.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,6 +31,11 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.windowManager.dwm.enable = true;
+
+  nixpkgs.overlays = [
+    (final: prev: { dwm = prev.dwm.overrideAttrs (old: { src = ./dwm; }); })
+  ];
 
   services.xserver = {
     layout = "us";
@@ -58,14 +63,18 @@
     packages = with pkgs; [ firefox brave unzip ];
   };
 
-  fonts.fonts = with pkgs;
-    [ (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; }) ];
-
-  nixpkgs.config.allowUnfree = true;
-
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
   users.extraGroups.vboxusers.members = [ "mat" ];
+
+  fonts.fonts = with pkgs; [
+    noto-fonts-emoji
+    (pkgs-unstable.nerdfonts.override {
+      fonts = [ "FiraCode" "JetBrainsMono" ];
+    })
+  ];
+
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     git
@@ -73,7 +82,11 @@
     vim
     ntfs3g
     (pkgs.callPackage ./cursor.nix { })
+    papirus-icon-theme
+    rofi
+    (pkgs.callPackage ./dwmblocks.nix { })
   ];
 
+  security.polkit.enable = true;
   system.stateVersion = "22.11";
 }
