@@ -71,6 +71,7 @@
     prismlauncher
     meld
     klavaro
+    libreoffice-still
     flameshot
     brightnessctl
     feh
@@ -82,6 +83,7 @@
     qt5ct
     arandr
     networkmanagerapplet
+    lxappearance
   ];
 
   programs.git = {
