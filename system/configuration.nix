@@ -1,6 +1,7 @@
-{ config, pkgs, pkgs-unstable, ... }: {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+{ config, pkgs, pkgs-unstable, ... }:
 
+{
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports = [ ./hardware-configuration.nix ./pipewire-conf.nix ];
 
   boot.loader.systemd-boot.enable = true;
@@ -29,13 +30,8 @@
 
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager.dwm.enable = true;
-
-  nixpkgs.overlays = [
-    (final: prev: { dwm = prev.dwm.overrideAttrs (old: { src = ./dwm; }); })
-  ];
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   services.xserver = {
     layout = "us";
@@ -45,7 +41,8 @@
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.gutenprint ];
 
-  virtualisation.docker.enable = false;
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -55,19 +52,27 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   users.users.mat = {
     isNormalUser = true;
     description = "Rahmat Ardiansyah";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [ firefox brave ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
+    packages = with pkgs; [
+      firefox
+      brave
+      gnome.gnome-tweaks
+      gnome.gnome-terminal
+      tilix
+      virt-manager
+      capitaine-cursors
+    ];
   };
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  users.extraGroups.vboxusers.members = [ "mat" ];
+  nixpkgs.config.allowUnfree = true;
+
+  programs.dconf.enable = true;
 
   fonts.fonts = with pkgs; [
     noto-fonts-emoji
@@ -76,20 +81,8 @@
     })
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  environment.systemPackages = with pkgs; [ git wget unzip vim ntfs3g ];
 
-  environment.systemPackages = with pkgs; [
-    git
-    wget
-    unzip
-    vim
-    ntfs3g
-    (pkgs.callPackage ./cursor.nix { })
-    papirus-icon-theme
-    rofi
-    (pkgs.callPackage ./dwmblocks.nix { })
-  ];
-
-  security.polkit.enable = true;
   system.stateVersion = "22.11";
+
 }
