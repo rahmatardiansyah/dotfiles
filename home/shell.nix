@@ -35,6 +35,8 @@
       bind '"\C-f":"tmux-sessionizer\n"'
     '';
 
+    sessionVariables = { };
+
     profileExtra = ''
       [[ -d "$HOME"/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
     '';
