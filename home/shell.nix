@@ -33,9 +33,13 @@
     bashrcExtra = ''
       bind '"\C-o":"ranger\n"'
       bind '"\C-f":"tmux-sessionizer\n"'
+      bind "set completion-ignore-case on"
     '';
 
-    sessionVariables = { };
+    sessionVariables = {
+      CM_DIR = "$HOME/.cache/clipmenu";
+      _JAVA_AWT_WM_NONREPARENTING = 1;
+    };
 
     profileExtra = ''
       [[ -d "$HOME"/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"

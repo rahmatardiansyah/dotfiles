@@ -58,6 +58,22 @@
     meld
     klavaro
     libreoffice-still
+    gcolor3
+    scrcpy
+
+    # Awesome Window Manager
+    kitty
+    lxappearance
+    flameshot
+    xcompmgr
+    clipmenu
+    networkmanagerapplet
+    xcape
+    dunst
+    brightnessctl
+    rofi
+    acpi
+    arandr
   ];
 
   imports = [ ./shell.nix ./git.nix ./tools.nix ./dotfiles.nix ];

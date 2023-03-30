@@ -28,10 +28,19 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    windowManager.awesome = {
+      enable = true;
+      luaModules = with pkgs.luaPackages; [
+        luarocks
+        luadbi-mysql
+      ];
+    };
+  };
 
   services.xserver = {
     layout = "us";
@@ -60,7 +69,7 @@
     description = "Rahmat Ardiansyah";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     packages = with pkgs;
-      [ firefox brave virt-manager catppuccin-cursors.mochaLight ]
+      [ firefox brave virt-manager comixcursors.Opaque_Slim_White arc-icon-theme ]
       ++ (if (config.services.xserver.desktopManager.gnome.enable) then [
         gnome.gnome-tweaks
         gnome.gnome-terminal

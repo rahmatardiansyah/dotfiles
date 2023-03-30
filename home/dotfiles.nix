@@ -1,5 +1,6 @@
 { config, ... }: {
 
+  home.file.".Xresources".source = ../.Xresources;
   xdg.configFile."brave-flags.conf".source = ../.config/brave-flags.conf;
 
   # disable sound gnome-screenshot
