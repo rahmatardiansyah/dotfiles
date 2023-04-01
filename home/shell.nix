@@ -38,7 +38,7 @@
 
     sessionVariables = {
       CM_DIR = "$HOME/.cache/clipmenu";
-      _JAVA_AWT_WM_NONREPARENTING = 1;
+      # _JAVA_AWT_WM_NONREPARENTING = 1;
     };
 
     profileExtra = ''

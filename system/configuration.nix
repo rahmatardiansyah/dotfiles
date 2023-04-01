@@ -35,10 +35,7 @@
     desktopManager.gnome.enable = true;
     windowManager.awesome = {
       enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks
-        luadbi-mysql
-      ];
+      luaModules = with pkgs.luaPackages; [ luarocks luadbi-mysql ];
     };
   };
 
@@ -69,8 +66,13 @@
     description = "Rahmat Ardiansyah";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     packages = with pkgs;
-      [ firefox brave virt-manager comixcursors.Opaque_Slim_White arc-icon-theme ]
-      ++ (if (config.services.xserver.desktopManager.gnome.enable) then [
+      [
+        firefox
+        brave
+        virt-manager
+        comixcursors.Opaque_Slim_White
+        arc-icon-theme
+      ] ++ (if (config.services.xserver.desktopManager.gnome.enable) then [
         gnome.gnome-tweaks
         gnome.gnome-terminal
         tilix

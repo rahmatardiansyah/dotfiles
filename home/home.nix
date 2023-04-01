@@ -1,6 +1,13 @@
 { config, pkgs, pkgs-unstable, ... }:
-
-{
+let
+in {
+  nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    })
+  ];
   home.username = "mat";
   home.homeDirectory = "/home/mat";
   home.stateVersion = "22.11";
@@ -70,10 +77,19 @@
     networkmanagerapplet
     xcape
     dunst
+    libnotify
     brightnessctl
-    rofi
     acpi
     arandr
+    pamixer
+
+    # Hyprland Window Manager
+    hyprpaper
+    waybar
+    rofi-wayland
+    cliphist
+    grim
+    slurp
   ];
 
   imports = [ ./shell.nix ./git.nix ./tools.nix ./dotfiles.nix ];
