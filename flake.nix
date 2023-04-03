@@ -35,9 +35,14 @@
         };
       };
       artHm = {
-        mat = home-manager.lib.homeManagerConfiguration {
+        matNixos = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home/home.nix ];
+          extraSpecialArgs = { inherit pkgs-unstable; };
+        };
+        matFedora = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home/fedora/home.nix ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
       };
