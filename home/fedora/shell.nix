@@ -13,7 +13,8 @@
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
-      cat = "bat";
+      cat = "bat --style=plain";
+      catn = "bat";
       rm = "trash-put";
       ssh-art = "ssh-add ~/.ssh/id_rsa_art";
       drive-rahmatnsn =
