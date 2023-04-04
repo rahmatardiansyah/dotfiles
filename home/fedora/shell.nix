@@ -18,7 +18,7 @@
       rm = "trash-put";
       ssh-art = "ssh-add ~/.ssh/id_rsa_art";
       drive-rahmatnsn =
-        "clone mount rahmatnsn_drive: /home/mat/.local/share/drive/rahmatnsn";
+        "rclone mount rahmatnsn_drive: /home/mat/.local/share/drive/rahmatnsn";
       umount-rahmatnsn = "fusermount -u ~/.local/share/drive/rahmatnsn";
       drive-rahmatardiansyah147 =
         "rclone mount rahmatardiansyah147_drive: /home/mat/.local/share/drive/rahmatardiansyah147";
