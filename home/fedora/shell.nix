@@ -28,6 +28,7 @@
         "rclone mount rahmat21_drive: /home/mat/.local/share/drive/rahmat21";
       umount-rahmat21 = "fusermount -u ~/.local/share/drive/rahmat21";
       nixbuildmat = "nix build .#artHm.matFedora.activationPackage";
+      "," = "comma";
     };
 
     bashrcExtra = ''

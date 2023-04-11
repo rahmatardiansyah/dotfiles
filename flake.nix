@@ -42,7 +42,18 @@
         };
         matFedora = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home/fedora/home.nix ];
+          modules = [
+            # hyprland.homeManagerModules.default
+            # {
+            #   wayland.windowManager.hyprland = {
+            #     enable = true;
+            #     extraConfig = ''
+            #       source = ~/.config/hypr/hyprmat.conf
+            #     '';
+            #   };
+            # }
+            ./home/fedora/home.nix
+          ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
       };
