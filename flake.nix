@@ -4,13 +4,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, nixpkgs-unstable, hyprland, home-manager, ... }:
+  outputs = { nixpkgs, nixpkgs-unstable, nix-index-database, hyprland
+    , home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -54,6 +57,11 @@
             # }
             ./home/fedora/home.nix
           ];
+          extraSpecialArgs = { inherit pkgs-unstable; };
+        };
+        matArch = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home/arch/home.nix nix-index-database.hmModules.nix-index];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
       };
