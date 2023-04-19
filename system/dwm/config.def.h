@@ -3,10 +3,10 @@
 /* appearance */
 static const unsigned int borderpx       = 1;   /* border pixel of windows */
 static const unsigned int snap           = 32;  /* snap pixel */
-static const unsigned int gappih         = 10;  /* horiz inner gap between windows */
-static const unsigned int gappiv         = 10;  /* vert inner gap between windows */
-static const unsigned int gappoh         = 10;  /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov         = 10;  /* vert outer gap between windows and screen edge */
+static const unsigned int gappih         = 0;  /* horiz inner gap between windows */
+static const unsigned int gappiv         = 0;  /* vert inner gap between windows */
+static const unsigned int gappoh         = 0;  /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov         = 0;  /* vert outer gap between windows and screen edge */
 static const int smartgaps_fact          = 0;   /* gap factor when there is only one client; 0 = no gaps, 3 = 3x outer gaps */
 static const char autostartblocksh[]     = "autostart_blocking.sh";
 static const char autostartsh[]          = "autostart.sh";
@@ -157,7 +157,7 @@ static const Rule rules[] = {
 	RULE(.class = "Gimp", .tags = 1 << 4)
 	RULE(.class = "Firefox", .tags = 1 << 7)
 	RULE(.class = "mpv", .isfloating = 1)
-	RULE(.class = "arandr", .isfloating = 1)
+	RULE(.class = "Arandr", .isfloating = 1)
 	RULE(.class = "scrcpy", .isfloating = 1)
 	RULE(.class = "Gcolor3", .isfloating = 1)
 	RULE(.class = "flameshot", .isfloating = 1)
@@ -311,10 +311,10 @@ static const Key keys[] = {
     { 0, XF86XK_AudioLowerVolume,	            spawn,                     SHCMD("pamixer --decrease 5; pkill -RTMIN+7 dwmblocks") },
     { 0, XF86XK_AudioMute,	                    spawn,                     SHCMD("pamixer -t; pkill -RTMIN+7 dwmblocks") },
     { 0, XF86XK_MonBrightnessUp,	            spawn,                     SHCMD("brightnessctl set 5%+") },
-    { 0, XF86XK_MonBrightnessDown,	            spawn,                     SHCMD("brightnessctl set 5%-") },
-    { 0, XF86XK_AudioMicMute,	                spawn,                     SHCMD("pamixer --toggle-mute --source 'effect_output.rnnoise'; pkill -RTMIN+8 dwmblocks") },
-    { MODKEY,                       XK_F3,      spawn,                     SHCMD("pamixer --increase 5 --source 'effect_output.rnnoise'; pkill -RTMIN+8 dwmblocks") },
-    { MODKEY,                       XK_F2,      spawn,                     SHCMD("pamixer --decrease 5 --source 'effect_output.rnnoise'; pkill -RTMIN+8 dwmblocks") },
+    { 0, XF86XK_MonBrightnessDown,	            spawn,                     SHCMD("brightnessctl --min-value=10 set 5%-") },
+    { 0, XF86XK_AudioMicMute,	                spawn,                     SHCMD("pamixer --toggle-mute --source 'output.rnnoise_source'; pkill -RTMIN+8 dwmblocks") },
+    { MODKEY,                       XK_F3,      spawn,                     SHCMD("pamixer --increase 5 --source 'output.rnnoise_source'; pkill -RTMIN+8 dwmblocks") },
+    { MODKEY,                       XK_F2,      spawn,                     SHCMD("pamixer --decrease 5 --source 'output.rnnoise_source'; pkill -RTMIN+8 dwmblocks") },
 	{ MODKEY,                       XK_F1,      spawn,                     SHCMD("dwm-help.sh") },
 };
 

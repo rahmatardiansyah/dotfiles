@@ -31,6 +31,7 @@
       "," = "comma";
       "pastefile" = "curl -F 'file=@-' 0x0.st <";
       "pastecmd" = "curl -F 'file=@-' 0x0.st";
+      "update-mirror" = "sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist";
     };
 
     bashrcExtra = ''
@@ -43,6 +44,7 @@
 
     profileExtra = ''
       [[ -d "$HOME"/.local/bin ]] && export PATH="$HOME/.local/bin:$PATH"
+      export $(gnome-keyring-daemon --daemonize --start)
     '';
   };
 

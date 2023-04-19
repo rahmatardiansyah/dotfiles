@@ -24,5 +24,5 @@
     texlive.combined.scheme-full
   ];
 
-  imports = [ ../git.nix ./shell.nix ./tools.nix ];
+  imports = [ ../git.nix ./shell.nix ./tools.nix ./dotfiles.nix ];
 }
