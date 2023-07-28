@@ -8,6 +8,7 @@ const Block blocks[] = {
 	// BLOCK("bar-screenkey.sh",    0,    14),
 	BLOCK("bar-ram.sh",    3,    0),
 	BLOCK("bar-cpu.sh",    3,    0),
+	BLOCK("bar-cputemp.sh",    10,    0),
 	/* BLOCK("bar-newsboat.sh",    0,    12), */
 	/* BLOCK("bar-pacupdate.sh",    1800,    13), */
 	BLOCK("bar-notification.sh",    60,    11),
