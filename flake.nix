@@ -2,8 +2,8 @@
   description = "Personal dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -43,30 +43,9 @@
           modules = [ ./home/home.nix ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
-        matFedora = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            # hyprland.homeManagerModules.default
-            # {
-            #   wayland.windowManager.hyprland = {
-            #     enable = true;
-            #     extraConfig = ''
-            #       source = ~/.config/hypr/hyprmat.conf
-            #     '';
-            #   };
-            # }
-            ./home/fedora/home.nix
-          ];
-          extraSpecialArgs = { inherit pkgs-unstable; };
-        };
         matArch = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home/arch/home.nix nix-index-database.hmModules.nix-index];
-          extraSpecialArgs = { inherit pkgs-unstable; };
-        };
-        matMint = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home/mint/home.nix nix-index-database.hmModules.nix-index];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
       };

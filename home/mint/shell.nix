@@ -37,7 +37,10 @@
       bind 'set completion-ignore-case on'
     '';
 
-    sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
+    sessionVariables = {
+        #QT_QPA_PLATFORMTHEME = "qt5ct";
+        #XDG_DATA_HOME= "$HOME/.local/share";
+    };
 
     profileExtra = ''
       [[ -d "$HOME"/.local/bin ]] && export PATH="$HOME/.local/bin:$PATH"

@@ -232,7 +232,7 @@ static const char *dmenucmd[] = {
 	NULL
 };
 static const char *rofi[]  = { "rofi", "-show", "drun", NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 /* This defines the name of the executable that handles the bar (used for signalling purposes) */
 #define STATUSBAR "dwmblocks"

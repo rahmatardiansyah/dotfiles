@@ -35,12 +35,10 @@
     };
 
     bashrcExtra = ''
-      bind '"\C-o":"ranger\n"'
-      bind '"\C-f":"tmux-sessionizer\n"'
       bind 'set completion-ignore-case on'
     '';
 
-    sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
+    # sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
 
     profileExtra = ''
       [[ -d "$HOME"/.local/bin ]] && export PATH="$HOME/.local/bin:$PATH"
