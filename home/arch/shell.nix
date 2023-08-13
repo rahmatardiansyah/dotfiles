@@ -32,6 +32,9 @@
       "pastefile" = "curl -F 'file=@-' 0x0.st <";
       "pastecmd" = "curl -F 'file=@-' 0x0.st";
       "update-mirror" = "sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist";
+      "docker-start" = "sudo systemctl start docker";
+      "docker-status" = "sudo systemctl status docker";
+      "docker-stop" = "sudo systemctl stop docker.service docker.socket";
     };
 
     bashrcExtra = ''
