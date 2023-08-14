@@ -19,11 +19,22 @@
     neofetch
     ranger
     comma
+    yt-dlp
+    
     # Programming
     nodejs_18
     rustc
     cargo
-    # texlive.combined.scheme-full
+
+    # Neovim
+    pkgs-unstable.neovim
+    pkgs-unstable.xclip
+    pkgs-unstable.tree-sitter
+    pkgs-unstable.ripgrep
+    pkgs-unstable.fd
+    pkgs-unstable.stylua
+
+    texlive.combined.scheme-full
   ];
 
   imports = [ ../git.nix ./shell.nix ./tools.nix ./dotfiles.nix ];
