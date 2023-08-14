@@ -10,6 +10,8 @@
       ls = "exa --group-directories-first";
       la = "ls -a";
       ll = "ls -alFh";
+      ".." = "cd ..";
+      "..." = "cd ../..";
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
