@@ -17,6 +17,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable Firewall
+  networking.firewall.enable = true;
+
   # Set your time zone.
   time.hardwareClockInLocalTime = true;
   time.timeZone = "Asia/Jakarta";
