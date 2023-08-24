@@ -26,6 +26,7 @@ in {
     ranger
     calcurse
     yt-dlp
+    comma
 
     # Neovim
     neovim

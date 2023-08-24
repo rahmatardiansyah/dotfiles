@@ -19,6 +19,7 @@
       catn = "bat";
       rm = "trash-put";
       ssh-art = "ssh-add ~/.ssh/id_rsa_art";
+      "," = "comma";
       drive-rahmatnsn =
         "clone mount rahmatnsn_drive: /home/mat/.local/share/drive/rahmatnsn";
       umount-rahmatnsn = "fusermount -u ~/.local/share/drive/rahmatnsn";
