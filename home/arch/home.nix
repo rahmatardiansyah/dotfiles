@@ -19,22 +19,19 @@
     neofetch
     ranger
     comma
+    tmux
     yt-dlp
-    
+    texlive.combined.scheme-full
+
     # Programming
     nodejs_18
     rustc
     cargo
 
-    # Neovim
-    pkgs-unstable.neovim
-    pkgs-unstable.xclip
-    pkgs-unstable.tree-sitter
-    pkgs-unstable.ripgrep
-    pkgs-unstable.fd
-    pkgs-unstable.stylua
+    # Neovim bugs for now
 
-    texlive.combined.scheme-full
+    # Window Manager
+    clipmenu
   ];
 
   imports = [ ../git.nix ./shell.nix ./tools.nix ./dotfiles.nix ];

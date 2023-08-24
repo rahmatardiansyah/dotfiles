@@ -1,18 +1,12 @@
 { config, pkgs, pkgs-unstable, ... }:
 let
 in {
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-  ];
-  home.username = "mat";
-  home.homeDirectory = "/home/mat";
-  home.stateVersion = "22.11";
+  home.username = "rahmat";
+  home.homeDirectory = "/home/rahmat";
+  home.stateVersion = "23.05";
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
+    # Terminal Apps
     git
     lazygit
     bat
@@ -33,64 +27,30 @@ in {
     calcurse
     yt-dlp
 
-    pkgs-unstable.neovim
-    pkgs-unstable.xclip
-    pkgs-unstable.wl-clipboard
-    pkgs-unstable.tree-sitter
-    pkgs-unstable.ripgrep
-    pkgs-unstable.fd
-    pkgs-unstable.nixfmt
+    # Neovim
+    neovim
+    xclip
+    wl-clipboard
+    tree-sitter
+    ripgrep
+    fd
+    nixfmt
 
-    nodejs-18_x
-    nodePackages.live-server
-
+    # Programming
     gcc
+    nodejs-18_x
     rustc
     cargo
 
-    joplin-desktop
+    # Desktop Apps
+    alacritty
     vscode
-    sublime4
     pavucontrol
-    keepassxc
     mpv
-    tdesktop
-    discord
-    obs-studio
-    anydesk
-    gimp
-    pcsx2
-    ppsspp
-    prismlauncher
-    meld
-    klavaro
-    libreoffice-still
     gcolor3
     scrcpy
-
-    # Awesome Window Manager
-    kitty
-    lxappearance
-    flameshot
-    xcompmgr
-    clipmenu
-    networkmanagerapplet
-    xcape
-    dunst
-    libnotify
-    brightnessctl
-    acpi
-    arandr
-    pamixer
-
-    # Hyprland Window Manager
-    hyprpaper
-    waybar
-    rofi-wayland
-    cliphist
-    grim
-    slurp
+    evince
   ];
 
-  imports = [ ./shell.nix ./git.nix ./tools.nix ./dotfiles.nix ];
+  imports = [ ./git.nix ./shell.nix ];
 }

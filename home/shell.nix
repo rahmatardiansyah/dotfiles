@@ -10,10 +10,13 @@
       ls = "exa --group-directories-first";
       la = "ls -a";
       ll = "ls -alFh";
+      ".." = "cd ..";
+      "..." = "cd ../..";
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
-      cat = "bat";
+      cat = "bat --style=plain";
+      catn = "bat";
       rm = "trash-put";
       ssh-art = "ssh-add ~/.ssh/id_rsa_art";
       drive-rahmatnsn =
@@ -26,19 +29,16 @@
       drive-rahmat21 =
         "rclone mount rahmat21_drive: /home/mat/.local/share/drive/rahmat21";
       umount-rahmat21 = "fusermount -u ~/.local/share/drive/rahmat21";
-      nixos-art = "sudo nixos-rebuild switch --flake .#art";
-      nixbuildmat = "nix build .#artHm.mat.activationPackage";
+      nixos-art = "sudo nixos-rebuild switch --flake .#nixos";
+      nixbuildmat = "nix build .#artHome.rahmat.activationPackage";
     };
 
     bashrcExtra = ''
-      bind '"\C-o":"ranger\n"'
-      bind '"\C-f":"tmux-sessionizer\n"'
       bind "set completion-ignore-case on"
     '';
 
     sessionVariables = {
-      CM_DIR = "$HOME/.cache/clipmenu";
-      # _JAVA_AWT_WM_NONREPARENTING = 1;
+      XCURSOR_THEME = "macOS-BigSur-White";
     };
 
     profileExtra = ''
@@ -59,5 +59,20 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+    settings = {
+      add_newline = false;
+      cmd_duration.disabled = true;
+      directory = { fish_style_pwd_dir_length = 1; };
+      shell = {
+        disabled = false;
+        unknown_indicator = "mystery shell";
+        style = "green bold";
+      };
+      character = {
+        success_symbol = "[➜](bold green)";
+        vimcmd_symbol = "[➜](bold yellow)";
+        error_symbol = "[✗](bold red)";
+      };
+    };
   };
 }

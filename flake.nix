@@ -1,5 +1,5 @@
 {
-  description = "Personal dotfiles";
+  description = "Personal Dotfiles Menage Using Nix Home Manager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
@@ -27,27 +27,21 @@
       lib = nixpkgs.lib;
     in {
       nixosConfigurations = {
-        art = lib.nixosSystem {
+        nixos = lib.nixosSystem {
           inherit system;
           modules = [
-            hyprland.nixosModules.default
-            { programs.hyprland.enable = true; }
             ./system/configuration.nix
           ];
           specialArgs = { inherit pkgs-unstable; };
         };
       };
-      artHm = {
-        matNixos = home-manager.lib.homeManagerConfiguration {
+      artHome = {
+        rahmat = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home/home.nix ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
-        matArch = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home/arch/home.nix nix-index-database.hmModules.nix-index];
-          extraSpecialArgs = { inherit pkgs-unstable; };
-        };
       };
+
     };
 }
