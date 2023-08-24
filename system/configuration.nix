@@ -56,9 +56,6 @@
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.gutenprint ];
 
-  # Enable Docker
-  virtualisation.docker.enable = true;
-
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -74,7 +71,7 @@
   users.users.rahmat = {
     isNormalUser = true;
     description = "Rahmat Ardiansyah";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     packages = with pkgs; [
       firefox
       brave
@@ -95,6 +92,13 @@
     })
   ];
 
+  # Enable Docker
+  virtualisation.docker.enable = true;
+
+  # Virtual Machine
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
   # System Packages
   environment.systemPackages = with pkgs; [
     ntfs3g
@@ -103,6 +107,7 @@
     gnome.gnome-tweaks
     gparted
     apple-cursor
+    virt-manager
   ];
 
   system.stateVersion = "23.05";
