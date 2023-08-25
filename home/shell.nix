@@ -40,6 +40,7 @@
 
     sessionVariables = {
       XCURSOR_THEME = "macOS-BigSur-White";
+      XCURSOR_SIZE = 24;
     };
 
     profileExtra = ''

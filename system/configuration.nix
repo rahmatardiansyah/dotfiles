@@ -91,6 +91,7 @@
       fonts = [ "FiraCode" "JetBrainsMono" ];
     })
   ];
+  fonts.fontDir.enable = true;
 
   # Enable Docker
   virtualisation.docker.enable = true;
