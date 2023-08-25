@@ -51,6 +51,7 @@ in {
     gcolor3
     scrcpy
     evince
+    libreoffice-still
   ];
 
   imports = [ ./git.nix ./shell.nix ];
