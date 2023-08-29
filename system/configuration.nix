@@ -105,6 +105,8 @@
     ntfs3g
     vim
     git
+    unzip
+    wget
     gnome.gnome-tweaks
     gparted
     apple-cursor
