@@ -44,6 +44,14 @@
           ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
+        rahmatWsl = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home/wsl/home.nix
+            nix-index-database.hmModules.nix-index
+          ];
+          extraSpecialArgs = { inherit pkgs-unstable; };
+        };
       };
 
     };
