@@ -36,6 +36,10 @@ in {
     ripgrep
     fd
     nixfmt
+    stylua
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.prettier
 
     # Programming
     gcc
