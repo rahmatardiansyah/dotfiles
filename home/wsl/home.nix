@@ -18,7 +18,7 @@ in {
     exa
     neofetch
     tmux
-    # trash-cli
+    trash-cli
     comma
 
     # Neovim

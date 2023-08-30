@@ -24,11 +24,17 @@
     };
 
     bashrcExtra = ''
-      bind "set completion-ignore-case on"
+    bind "set completion-ignore-case on"
     '';
 
     profileExtra = ''
-      [[ -d "$HOME"/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
+    [[ -d "$HOME"/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
+
+    runcount=$(ps -ef | grep "ssh-agent" | grep -v "grep" | wc -l)
+    if [ $runcount -eq 0 ]; then
+      echo Starting SSH Agent
+      eval $(ssh-agent -s)
+    fi
     '';
   };
 
