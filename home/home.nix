@@ -49,12 +49,15 @@ in {
 
     # Desktop Apps
     alacritty
+    kitty
     vscode
     pavucontrol
     mpv
+    celluloid # mpv frontend
     gcolor3
     scrcpy
     evince
+    showmethekey
     libreoffice-still
   ];
 
