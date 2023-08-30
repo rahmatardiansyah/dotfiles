@@ -1,13 +1,9 @@
 { config, pkgs, pkgs-unstable, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./pipewire-conf.nix
-    ];
+  imports = [ ./hardware-configuration.nix ./pipewire-conf.nix ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -72,10 +68,7 @@
     isNormalUser = true;
     description = "Rahmat Ardiansyah";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
-    packages = with pkgs; [
-      firefox
-      brave
-    ];
+    packages = with pkgs; [ firefox brave ];
   };
 
   # Allow unfree packages
