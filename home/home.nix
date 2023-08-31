@@ -61,5 +61,5 @@ in {
     libreoffice-still
   ];
 
-  imports = [ ./git.nix ./shell.nix ];
+  imports = [ ./git.nix ./shell.nix ./dotfiles.nix ];
 }
