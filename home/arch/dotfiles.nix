@@ -1,5 +1,5 @@
 { config, ... }: {
 
-  home.file.".Xresources".source = ../../.Xresources;
+  # xdg.dataFile."sounds/__custom/screen-capture.disabled".text = "";
 
 }

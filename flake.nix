@@ -38,6 +38,11 @@
           modules = [ ./home/home.nix nix-index-database.hmModules.nix-index ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
+        matArch = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home/arch/home.nix nix-index-database.hmModules.nix-index ];
+          extraSpecialArgs = { inherit pkgs-unstable; };
+        };
         rahmatWsl = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules =

@@ -1,4 +1,6 @@
-{ config, pkgs, pkgs-unstable, ... }: {
+{ config, pkgs, pkgs-unstable, ... }:
+let
+in {
   home.username = "mat";
   home.homeDirectory = "/home/mat";
   home.stateVersion = "23.05";
@@ -29,10 +31,18 @@
     cargo
 
     # Neovim bugs for now
-
-    # Window Manager
-    clipmenu
+    neovim
+    xclip
+    wl-clipboard
+    tree-sitter
+    ripgrep
+    fd
+    nixfmt
+    stylua
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.prettier
   ];
 
-  imports = [ ../git.nix ./shell.nix ./tools.nix ./dotfiles.nix ];
+  imports = [ ../git.nix ./shell.nix ./dotfiles.nix ];
 }

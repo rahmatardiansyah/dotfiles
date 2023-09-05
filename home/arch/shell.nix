@@ -29,14 +29,18 @@
       drive-rahmat21 =
         "rclone mount rahmat21_drive: /home/mat/.local/share/drive/rahmat21";
       umount-rahmat21 = "fusermount -u ~/.local/share/drive/rahmat21";
-      nixbuildmat = "nix build .#artHm.matArch.activationPackage";
+      nixbuildmat = "nix build .#artHome.matArch.activationPackage";
       "," = "comma";
       "pastefile" = "curl -F 'file=@-' 0x0.st <";
       "pastecmd" = "curl -F 'file=@-' 0x0.st";
-      "update-mirror" = "sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist";
+      "update-mirror" =
+        "sudo reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist";
       "docker-start" = "sudo systemctl start docker";
       "docker-status" = "sudo systemctl status docker";
       "docker-stop" = "sudo systemctl stop docker.service docker.socket";
+      "merge-pdf" = "convert -density 300x300 -quality 100";
+      "backgroundremover" = ''
+        podman run -it --rm -v "$(pwd):/tmp" docker.io/library/backgroundremover'';
     };
 
     bashrcExtra = ''
