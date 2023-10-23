@@ -1,0 +1,7 @@
+[user]
+	email = artsbymat@gmail.com
+	name = Mat
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
