@@ -35,7 +35,7 @@
       artHome = {
         rahmat = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home/home.nix nix-index-database.hmModules.nix-index ];
+          modules = [ ./home/home.nix ];
           extraSpecialArgs = { inherit pkgs-unstable; };
         };
         rahmatWsl = home-manager.lib.homeManagerConfiguration {
