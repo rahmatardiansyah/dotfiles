@@ -10,7 +10,8 @@ in {
     lazygit
     nixfmt
     gist
-    # texlive.combined.scheme-full
+    texlive.combined.scheme-full
+    thefuck
   ];
 
   imports = [ ];
