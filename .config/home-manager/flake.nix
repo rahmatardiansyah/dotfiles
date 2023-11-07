@@ -33,7 +33,7 @@
         };
       };
       artHome = {
-        rahmat = home-manager.lib.homeManagerConfiguration {
+        mat = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home/home.nix ];
           extraSpecialArgs = { inherit pkgs-unstable; };
