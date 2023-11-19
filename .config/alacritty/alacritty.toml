@@ -1,0 +1,32 @@
+import = ["/home/rahmat/.config/alacritty/colorscheme/solarized-osaka.toml"]
+
+[font]
+size = 10
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[window]
+opacity = 0.85
+
+[window.padding]
+x = 5
+y = 0
