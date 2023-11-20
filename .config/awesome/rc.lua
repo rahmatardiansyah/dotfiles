@@ -1,15 +1,10 @@
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-
--- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
--- Theme handling library
 local beautiful = require("beautiful")
+
 -- Notification library
 local naughty = require("naughty")
 naughty.config.defaults["icon_size"] = 200
@@ -143,6 +138,13 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 date_widget = wibox.widget.textclock("%a,%d/%m/%Y %H:%M:%S", 1)
 
+local myclock_t = awful.tooltip({
+	objects = { date_widget },
+	timer_function = function()
+		return os.date("Today is %A %B %d %Y\nThe time is %T")
+	end,
+})
+
 -- Volume
 local volume_widget = require("widgets.volume.volume")
 
@@ -150,13 +152,13 @@ local volume_widget = require("widgets.volume.volume")
 local battery_widget = require("widgets.battery.battery")
 
 -- Brightness
-local brightness_widget = require("widgets.brightness.brightness")
+-- local brightness_widget = require("widgets.brightness.brightness")
 
 -- cpu
-local cpu_widget = require("widgets.cpu.cpu")
+-- local cpu_widget = require("widgets.cpu.cpu")
 
 -- ram
-local ram_widget = require("widgets.ram.ram")
+-- local ram_widget = require("widgets.ram.ram")
 
 -- capslock
 -- local capslock = require("widgets.capslock.capslock")
@@ -213,29 +215,29 @@ awful.screen.connect_for_each_screen(function(s)
 	s.systray.visible = false
 
 	-- Ram
-	s.ram = ram_widget()
-	s.ram.visible = false
+	-- s.ram = ram_widget()
+	-- s.ram.visible = false
 
 	-- CPU
-	s.cpu = cpu_widget({
-		width = 70,
-		step_width = 2,
-		step_spacing = 0,
-		color = "#434c5e",
-	})
-	s.cpu.visible = false
+	-- s.cpu = cpu_widget({
+	-- 	width = 70,
+	-- 	step_width = 2,
+	-- 	step_spacing = 0,
+	-- 	color = "#434c5e",
+	-- })
+	-- s.cpu.visible = false
 
 	-- Brightness
-	s.brightness = brightness_widget({
-		type = "icon_and_text",
-		program = "brightnessctl",
-		step = 5,
-		base = 30,
-		rmb_set_max = true,
-		tooltip = false,
-		percentage = false,
-	})
-	s.brightness.visible = false
+	-- s.brightness = brightness_widget({
+	-- 	type = "icon_and_text",
+	-- 	program = "brightnessctl",
+	-- 	step = 5,
+	-- 	base = 30,
+	-- 	rmb_set_max = true,
+	-- 	tooltip = false,
+	-- 	percentage = false,
+	-- })
+	-- s.brightness.visible = false
 
 	-- Wallpaper
 	set_wallpaper(s)
@@ -291,9 +293,9 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			s.systray,
-			s.ram,
-			s.cpu,
-			s.brightness,
+			-- s.ram,
+			-- s.cpu,
+			-- s.brightness,
 			volume_widget({
 				widget_type = "horizontal_bar",
 				with_icon = true,
@@ -466,9 +468,9 @@ globalkeys = gears.table.join(
 
 	awful.key({ modkey }, "\\", function()
 		awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
-		awful.screen.focused().ram.visible = not awful.screen.focused().ram.visible
-		awful.screen.focused().cpu.visible = not awful.screen.focused().cpu.visible
-		awful.screen.focused().brightness.visible = not awful.screen.focused().brightness.visible
+		-- awful.screen.focused().ram.visible = not awful.screen.focused().ram.visible
+		-- awful.screen.focused().cpu.visible = not awful.screen.focused().cpu.visible
+		-- awful.screen.focused().brightness.visible = not awful.screen.focused().brightness.visible
 	end, { description = "Toggle systray visibility", group = "awesome" }),
 
 	awful.key({ modkey, "Control" }, "=", function()
@@ -736,11 +738,19 @@ end)
 
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
-	if c.fullscreen then
-		awful.spawn("preon.sh")
-	end
-	if not c.fullscreen then
-		awful.spawn("preoff.sh")
+	if c.name then
+		local lowerName = c.name:lower()
+		for _, app in ipairs(targetApplications) do
+			if string.match(lowerName, app) then
+				if c.fullscreen then
+					awful.spawn("preon.sh")
+				end
+				if not c.fullscreen then
+					awful.spawn("preoff.sh")
+				end
+				break
+			end
+		end
 	end
 end)
 

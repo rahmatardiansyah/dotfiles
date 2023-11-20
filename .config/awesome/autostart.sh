@@ -7,6 +7,7 @@ function run {
 }
 
 run "picom"
+# run "xcompmgr"
 run "flameshot"
 run "nm-applet"
 run "blueman-applet"
