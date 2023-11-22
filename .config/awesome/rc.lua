@@ -152,7 +152,7 @@ local volume_widget = require("widgets.volume.volume")
 local battery_widget = require("widgets.battery.battery")
 
 -- Brightness
--- local brightness_widget = require("widgets.brightness.brightness")
+local brightness_widget = require("widgets.brightness.brightness")
 
 -- cpu
 -- local cpu_widget = require("widgets.cpu.cpu")
@@ -228,16 +228,16 @@ awful.screen.connect_for_each_screen(function(s)
 	-- s.cpu.visible = false
 
 	-- Brightness
-	-- s.brightness = brightness_widget({
-	-- 	type = "icon_and_text",
-	-- 	program = "brightnessctl",
-	-- 	step = 5,
-	-- 	base = 30,
-	-- 	rmb_set_max = true,
-	-- 	tooltip = false,
-	-- 	percentage = false,
-	-- })
-	-- s.brightness.visible = false
+	s.brightness = brightness_widget({
+		type = "icon_and_text",
+		program = "brightnessctl",
+		step = 5,
+		base = 30,
+		rmb_set_max = true,
+		tooltip = false,
+		percentage = false,
+	})
+	s.brightness.visible = true
 
 	-- Wallpaper
 	set_wallpaper(s)
@@ -476,9 +476,22 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "=", function()
 		awful.tag.incgap(5)
 	end, { description = "increase gaps", group = "customise" }),
+
 	awful.key({ modkey, "Control" }, "-", function()
 		awful.tag.incgap(-5)
 	end, { description = "decrease gaps", group = "customise" }),
+
+	awful.key({ modkey }, "e", function()
+		awful.spawn("rofi-emoji.sh")
+	end, { description = "menu power", group = "application" }),
+
+	awful.key({ modkey }, "a", function()
+		awful.spawn("rofi-surfraw.sh")
+	end, { description = "search website", group = "application" }),
+
+	awful.key({ modkey, "Shift" }, "a", function()
+		awful.spawn("rofi-surfraw-bookmarks.sh")
+	end, { description = "search bookmarks", group = "application" }),
 	-- }}}
 
 	awful.key({ modkey, "Control" }, "n", function()
@@ -644,7 +657,18 @@ awful.rules.rules = {
 
 	-- Floating & Show Titlebar
 	{
-		rule_any = { class = { "Arandr", "mpv", "Pavucontrol", "flameshot", "Nm-applet", "scrcpy", "Blueman-manager" } },
+		rule_any = {
+			class = {
+				"Arandr",
+				"mpv",
+				"Pavucontrol",
+				"flameshot",
+				"Nm-applet",
+				"scrcpy",
+				"Blueman-manager",
+				"Lxappearance",
+			},
+		},
 		properties = { floating = true, titlebars_enabled = true, placement = awful.placement.centered },
 	},
 

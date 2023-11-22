@@ -59,3 +59,5 @@ alias gtl='git log --decorate --oneline --graph'
 
 # Yay
 # alias upgradeall='yay -Syu --sudoloop'
+
+alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'

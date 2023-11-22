@@ -1,7 +1,7 @@
 # ~/.profile: executed by the command interpreter for login shells.
 
 export EDITOR=nvim
-# export BROWSER=firefox
+ export BROWSER="brave-browser"
 export MANPAGER="nvim +Man!"
 export CM_LAUNCHER=rofi
 export CM_IGNORE_WINDOW="KeePassXC"
